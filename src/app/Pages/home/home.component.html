@@ -1,0 +1,24 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav mode="over" [(opened)]="opened" class="sidenav">
+    <h3>Cart Total {{ cartTotal$ | async }}</h3>
+    <div *ngFor="let e of  cartProducts$|async">
+      <h4>{{e.title}}</h4>
+      <p>{{e.count}}</p>
+      <mat-icon mat-raised-button (click)="removeFromCart(e)">delete</mat-icon>
+      <mat-icon mat-raised-button (click)="addToCart(e)"> add </mat-icon>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+
+    <p><button mat-button (click)="sidenav.toggle()">Open Cart</button></p>
+
+    <div class="content">
+      <div *ngFor="let e of  products$|async">
+        <h4>{{e.title}}</h4>
+
+        <mat-icon mat-raised-button (click)="addToCart(e)"> shopping_cart </mat-icon>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
